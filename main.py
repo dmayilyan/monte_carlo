@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from typing import Tuple
 
 from tools import time_run
 
 
-def get_shape():
+def get_shape() -> Tuple[np.ndarray, np.ndarray]:
     l = 0.03
 
     x = np.arange(0.001, 1.001, 0.001)
@@ -64,7 +65,7 @@ def generate_curve():
     return np.unique(points_under, return_counts=True)
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     # TODO Adapt to have easy access to other sampling methods
     x, y = generate_curve()
 
