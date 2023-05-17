@@ -14,24 +14,11 @@ def get_shape() -> Tuple[np.ndarray, np.ndarray]:
     return x, y
 
 
-def get_ratio(y):
+def get_ratio(y: np.ndarray) -> np.ndarray:
     return 1 / np.max(y)
 
 
-def get_y(y, scaler):
-    return scaler.transform(y.reshape(1, -1))
-
-
-def is_under_curve(xg, yg, ratio):
-    l = 0.03
-
-    y = l / xg * np.exp(-l / xg)
-
-    if yg < y * ratio:
-        return True
-
-
-def is_under(points, ratio):
+def is_under(points: np.ndarray, ratio: np.ndarray) -> np.ndarray:
     # :0 is x
     # :1 is y
     l = 0.03
@@ -61,6 +48,8 @@ def generate_curve():
 
     points_under = is_under(xy_dots, ratio)
     points_under *= 1000
+
+    a, b = np.unique(points_under, return_counts=True)
 
     return np.unique(points_under, return_counts=True)
 
